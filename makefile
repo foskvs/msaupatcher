@@ -6,3 +6,4 @@ install: msftupdtpatcher.sh
 
 clean:
 	rm -f /usr/local/bin/msftupdtpatcher
+	
