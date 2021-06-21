@@ -1,4 +1,6 @@
-# msftupdtpatcher
+# msaupatcher
+
+Microsoft Autoupdate patcher
 
 ## Instructions
 
