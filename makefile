@@ -1,8 +1,12 @@
 
-install: msftupdtpatcher.sh
-	cp msftupdtpatcher.sh /usr/local/bin/msftupdtpatcher
-	chmod +x /usr/local/bin/msftupdtpatcher
+install: msaupatcher.sh
+	cp msaupatcher.sh msaupatcher
+	chmod +x msaupatcher
+	cp msaupatcher /usr/local/bin/msaupatcher
+
+uninstall:
+	rm -f /usr/local/bin/msaupatcher
 
 clean:
-	rm -f /usr/local/bin/msftupdtpatcher
+	rm -f msaupatcher
 
