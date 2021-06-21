@@ -8,4 +8,4 @@ Install the binary to ```/usr/local/bin``` with
 
 Uninstall it with
 
-```make clean```
+```make uninstall```
