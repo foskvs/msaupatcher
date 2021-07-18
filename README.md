@@ -1,6 +1,6 @@
 # msaupatcher
 
-Microsoft AutoUpdate patcher. Since Microsoft AutoUpdate searches for updates even if te checkbox is unselected, this tool forces the update agent to stop.
+Microsoft AutoUpdate patcher. Since Microsoft AutoUpdate searches for updates even if the checkbox is unselected, this tool forces the update agent to stop.
 
 ## Instructions
 
