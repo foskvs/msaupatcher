@@ -3,6 +3,9 @@
 RESULT=0
 STATUS="false"
 NO_ARG=1
+SCRIPT_NAME=$0
+ARG=$1
+MSAU="Microsoft AutoUpdate"
 
 check_status () {
     STATUS=$(launchctl print-disabled gui/$(id -u) | grep microsoft | cut -d ">" -f2- | cut -c2-)
@@ -13,7 +16,7 @@ enable_updater () {
     check_status
         if [[ ${STATUS} == "false" ]];
         then
-        RESULT=1
+            RESULT=1
         fi
 }
 
@@ -22,42 +25,57 @@ disable_updater () {
     check_status
         if [[ ${STATUS} == "true" ]];
         then
-        RESULT=1
+            RESULT=1
         fi
 }
 
 no_args () {
-    if [[ $1 == "" ]];
+    if [[ -z "$ARG" ]];
     then
-    NO_ARG=1
+        NO_ARG=1
     else
-    NO_ARG=0
+        NO_ARG=0
     fi
+}
+
+help_message () {
+    echo Usage: "${SCRIPT_NAME} [arg]"
+    echo
+    echo Arguments:
+    echo "    --help    Print help message"
+    echo "    --enable  Enable $MSAU"
+    echo "    --disable Disable $MSAU"
+    echo
+    echo "The script automatically enables/disables $MSAU if no arguments are provided"
+    exit
 }
 
 no_args
 
 if [ ${NO_ARG} -eq 1 ];
 then
-check_status
+    check_status
     if [[ ${STATUS} == "false" ]];
     then
-    echo "Disabling the updater..."
-    disable_updater
+        echo "Disabling the updater..."
+        disable_updater
     elif [[ ${STATUS} == "true" ]];
     then
-    echo "Enabling the updater..."
-    enable_updater
+        echo "Enabling the updater..."
+        enable_updater
     fi
 elif [[ ${1:0:2} == "--" ]];
 then
-COMMAND_TO_RUN=$(echo $1 | cut -c3-)
+    COMMAND_TO_RUN=$(echo $1 | cut -c3-)
     if [[ $COMMAND_TO_RUN == "enable" ]];
     then
-    enable_updater
+        enable_updater
     elif [[ $COMMAND_TO_RUN == "disable" ]];
     then
-    disable_updater
+        disable_updater
+    elif [[ $COMMAND_TO_RUN == "help" ]];
+    then
+        help_message
     fi
 fi
 
@@ -65,7 +83,7 @@ fi
 
 if [ ${RESULT} -eq 1 ];
 then
-echo success
+    echo success
 else
-echo failed
+    echo failed
 fi
