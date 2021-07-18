@@ -42,12 +42,17 @@ help_message () {
     echo Usage: "${SCRIPT_NAME} [arg]"
     echo
     echo Arguments:
-    echo "    --help    Print help message"
-    echo "    --enable  Enable $MSAU"
-    echo "    --disable Disable $MSAU"
+    echo " -h, --help     Print help message"
+    echo "     --enable   Enable $MSAU"
+    echo "     --disable  Disable $MSAU"
     echo
     echo "The script automatically enables/disables $MSAU if no arguments are provided"
     exit
+}
+
+invalid_argument () {
+    echo Invalid argument. For more information use
+    echo "${SCRIPT_NAME} -h"
 }
 
 no_args
@@ -76,6 +81,23 @@ then
     elif [[ $COMMAND_TO_RUN == "help" ]];
     then
         help_message
+    else
+        invalid_argument
+    fi
+elif [[ ${1:0:1} == "-" ]];
+then
+    COMMAND_TO_RUN=$(echo t$1 | cut -c3-)
+    if [[ $COMMAND_TO_RUN == "e" ]];
+    then
+        enable_updater
+    elif [[ $COMMAND_TO_RUN == "d" ]];
+    then
+        disable_updater
+    elif [[ $COMMAND_TO_RUN == "h" ]];
+    then
+        help_message
+    else
+        invalid_argument
     fi
 fi
 
