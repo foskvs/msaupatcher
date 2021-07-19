@@ -4,7 +4,7 @@ Microsoft AutoUpdate patcher. Since Microsoft AutoUpdate searches for updates ev
 
 ## Instructions
 
-Install the binary to ```/usr/local/bin``` with
+Install the script to ```/usr/local/bin``` with
 
 ```make install```
 
