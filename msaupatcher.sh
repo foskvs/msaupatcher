@@ -43,10 +43,23 @@ help_message () {
     echo
     echo Arguments:
     echo " -h, --help     Print help message"
-    echo "     --enable   Enable $MSAU"
-    echo "     --disable  Disable $MSAU"
+    echo " -e, --enable   Enable $MSAU"
+    echo " -d, --disable  Disable $MSAU"
+    echo " -s, --status   Check $MSAU status (enabled/disabled)"
     echo
     echo "The script automatically enables/disables $MSAU if no arguments are provided"
+    exit
+}
+
+print_status () {
+    check_status
+    if [[ ${STATUS} == "false" ]];
+    then
+        echo "Enabled"
+    elif [[ ${STATUS} == "true" ]];
+    then
+        echo "Disabled"
+    fi
     exit
 }
 
@@ -81,6 +94,9 @@ then
     elif [[ $COMMAND_TO_RUN == "help" ]];
     then
         help_message
+    elif [[ $COMMAND_TO_RUN == "status" ]];
+    then
+        print_status
     else
         invalid_argument
     fi
@@ -96,6 +112,9 @@ then
     elif [[ $COMMAND_TO_RUN == "h" ]];
     then
         help_message
+    elif [[ $COMMAND_TO_RUN == "s" ]];
+    then
+        print_status
     else
         invalid_argument
     fi
