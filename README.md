@@ -20,3 +20,4 @@ The script automatically disables Microsoft AutoUpdate if it's enabled (and vice
 
  - ```-e``` or ```--enable``` enables the automatic search for updates.
  - ```-d``` or ```--disable``` disables the automatic search for updates.
+ - ```-s``` or ```--status``` checks the current status (enabled/disabled).
