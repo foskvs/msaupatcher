@@ -8,7 +8,7 @@ ARG=$1
 MSAU="Microsoft AutoUpdate"
 
 check_status () {
-    STATUS=$(launchctl print-disabled gui/$(id -u) | grep microsoft | cut -d ">" -f2- | cut -c2-)
+    STATUS=$(launchctl print-disabled gui/$(id -u) | grep "microsoft.update" | cut -d ">" -f2- | cut -c2-)
 }
 
 enable_updater () {
