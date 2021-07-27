@@ -6,11 +6,11 @@ Microsoft AutoUpdate patcher. Since Microsoft AutoUpdate searches for updates ev
 
 Install the script to ```/usr/local/bin``` with
 
-```make install```
+```sudo make install```
 
 Uninstall it with
 
-```make uninstall```
+```sudo make uninstall```
 
 ## Usage
 
